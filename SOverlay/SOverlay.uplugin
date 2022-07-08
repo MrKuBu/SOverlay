@@ -1,0 +1,46 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"EngineVersion": "4.27",
+	"FriendlyName": "SOverlay",
+	"Description": "Interaction steam overlay",
+	"Category": "Overlay",
+	"CreatedBy": "Awesomium Team LLC",
+	"CreatedByURL": "https://mrkubu.github.io",
+	"DocsURL": "https://docs.google.com/document/d/1tPPBWK2LZ7zMbPgBHZ5JGZzBwXjd5_-K6f417J3-XeY",
+	"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/cc7ed32bbc164220b5bda680b9843745",
+	"SupportURL": "https://discord.com/invite/Faw5rRWhyd",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "SOverlay",
+			"Type": "Runtime",
+			"LoadingPhase": "PreLoadingScreen",
+			"WhitelistPlatforms": [
+				"Win64",
+				"Win32",
+				"Mac",
+				"Linux",
+				"AllDesktop"
+			]
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "OnlineSubsystem",
+			"Enabled": true
+		},
+		{
+			"Name": "OnlineSubsystemUtils",
+			"Enabled": true
+		},
+		{
+			"Name": "OnlineSubsystemSteam",
+			"Enabled": true
+		}
+	]
+}
