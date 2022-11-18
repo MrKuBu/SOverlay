@@ -4,6 +4,7 @@ Use the full power of the steam overlay.
 ------
 ### [Unreal marketplace](https://github.com/Awesomium-Team/Telegram-message-UE/releases).
 ### Support [Discord](https://github.com/Awesomium-Team/Telegram-message-UE/releases).
+### [Releases and builded plugin version 4.27 to 5.1](https://github.com/MrKuBu/SOverlay/releases/)
 ------
 This product uses the company's Third Party features ([SteamWorks](https://partner.steamgames.com/doc/sdk)). This SDK is already implemented in the game engine.
 
