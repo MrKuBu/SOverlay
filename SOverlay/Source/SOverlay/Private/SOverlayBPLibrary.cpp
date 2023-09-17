@@ -116,9 +116,17 @@ void USOverlayBPLibrary::GameOverlayToUser(const FString Window)
 		if (SteamFriends())
 		{
 			CSteamID playerID = SteamUser()->GetSteamID();
-			char* result = TCHAR_TO_ANSI(*Window);
+			// For normal OS (Windows and Linux)
+			//char* result = TCHAR_TO_ANSI(*Window);
+			//SteamFriends()->ActivateGameOverlayToUser(result, playerID);
 
-			SteamFriends()->ActivateGameOverlayToUser(result, playerID);
+			// For GayOS (Mac)
+			TArray<TCHAR> WindowCharArray;
+            		Window.GetCharArray(WindowCharArray);
+            		FString WindowString = FString::Printf(TEXT("%s"), WindowCharArray.GetData());
+            		const char* Result = TCHAR_TO_UTF8(*WindowString);
+
+            		SteamFriends()->ActivateGameOverlayToUser(Result, playerID);
 		}
 		else
 		{
