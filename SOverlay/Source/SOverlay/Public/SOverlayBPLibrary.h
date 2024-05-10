@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Delegates/Delegate.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "Engine.h"
 #include "Containers/UnrealString.h"
@@ -20,12 +21,26 @@
 #pragma warning(disable:4265)
 #pragma warning(pop)
 
+// Callback delegate
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGameOverlayActivatedDelegate, bool, bActive);
+
 UCLASS()
 class USOverlayBPLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 
 public:
+	// Callback
+	UFUNCTION(BlueprintPure, meta = (DisplayName = "Steam Friends", Keywords = "Steam Friends"), Category = "AWTeam|Steam|Overlays|Callback")
+		static USOverlayBPLibrary* GetFriends();
+
+    	USOverlayBPLibrary();
+
+    	UPROPERTY(BlueprintAssignable,  meta = (DisplayName = "Steam Overlay listener", Keywords = "Steam overlay activated"), Category = "AWTeam|Steam|Overlays|Callback")
+		FGameOverlayActivatedDelegate GameOverlayActivated;
+
+	void OnGameOverlayActivated(void* Data);
+
 	//  Проверка, работает ли Steam
 
 	// Check if steam is working
