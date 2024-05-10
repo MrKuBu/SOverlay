@@ -1,4 +1,4 @@
-// Copyright 2022 Awesomium team LLC. All Rights Reserved.
+// Copyright 2024 Awesomium team LLC. All Rights Reserved.
 
 #include "SOverlayBPLibrary.h"
 #include "SOverlay.h"
@@ -8,6 +8,26 @@
 #pragma warning(disable:4265)
 #pragma warning(pop)
 
+// Callback
+USOverlayBPLibrary* USOverlayBPLibrary::GetFriends()
+{
+	return SteamFriends() ? USOverlayBPLibrary::StaticClass()->GetDefaultObject<USOverlayBPLibrary>() : nullptr;
+}
+
+static TArray<void*> CallbacksFriends;
+
+USOverlayBPLibrary::USOverlayBPLibrary()
+{
+	CallbacksFriends.Add(new CCallback<USOverlayBPLibrary, GameOverlayActivated_t>(this, (void(USOverlayBPLibrary::*)(GameOverlayActivated_t*))&USOverlayBPLibrary::OnGameOverlayActivated));
+}
+
+void USOverlayBPLibrary::OnGameOverlayActivated(void* Data)
+{
+	GameOverlayActivated_t* Converted = (GameOverlayActivated_t*)Data;
+	GameOverlayActivated.Broadcast(Converted->m_bActive != 0);
+}
+
+// Functions
 bool USOverlayBPLibrary::SteamWorked()
 {
 	if (SteamAPI_Init())
@@ -116,16 +136,20 @@ void USOverlayBPLibrary::GameOverlayToUser(const FString Window)
 		if (SteamFriends())
 		{
 			CSteamID playerID = SteamUser()->GetSteamID();
-			// For normal OS (Windows and Linux)
-			//char* result = TCHAR_TO_ANSI(*Window);
-			//SteamFriends()->ActivateGameOverlayToUser(result, playerID);
 
+#if PLATFORM_WINDOWS || PLATFORM_LINUX
+			// For normal OS (Windows and Linux)
+			char* result = TCHAR_TO_ANSI(*Window);
+
+			SteamFriends()->ActivateGameOverlayToUser(result, playerID);
+#elif PLATFORM_MAC
 			// For GayOS (Mac)
 			TArray<TCHAR> WindowCharArray;
             		Window.GetCharArray(WindowCharArray);
             		FString WindowString = FString::Printf(TEXT("%s"), WindowCharArray.GetData());
+			
             		const char* Result = TCHAR_TO_UTF8(*WindowString);
-
+#endif
             		SteamFriends()->ActivateGameOverlayToUser(Result, playerID);
 		}
 		else
