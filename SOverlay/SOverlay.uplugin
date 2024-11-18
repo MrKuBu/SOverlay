@@ -2,7 +2,7 @@
 	"FileVersion": 3,
 	"Version": 1,
 	"VersionName": "1.0",
-	"EngineVersion": "4.27",
+	"EngineVersion": "5.5",
 	"FriendlyName": "SOverlay",
 	"Description": "Interaction steam overlay",
 	"Category": "Overlay",
