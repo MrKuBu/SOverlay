@@ -9,10 +9,10 @@
 #include "Containers/UnrealString.h"
 #pragma push_macro("ARRAY_COUNT")
 #undef ARRAY_COUNT
-#include "ThirdParty/Steamworks/Steamv153/sdk/public/steam/steam_api.h"
-#include "ThirdParty/Steamworks/Steamv153/sdk/public/steam/steamtypes.h"
-#include "ThirdParty/Steamworks/Steamv153/sdk/public/steam/isteamutils.h"
-#include "ThirdParty/Steamworks/Steamv153/sdk/public/steam/isteamfriends.h"
+#include "ThirdParty/Steamworks/Steamv157/sdk/public/steam/steam_api.h"
+#include "ThirdParty/Steamworks/Steamv157/sdk/public/steam/steamtypes.h"
+#include "ThirdParty/Steamworks/Steamv157/sdk/public/steam/isteamutils.h"
+#include "ThirdParty/Steamworks/Steamv157/sdk/public/steam/isteamfriends.h"
 #pragma pop_macro("ARRAY_COUNT")
 #include "SOverlayBPLibrary.generated.h"
 
