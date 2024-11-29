@@ -149,8 +149,10 @@ void USOverlayBPLibrary::GameOverlayToUser(const FString Window)
             		FString WindowString = FString::Printf(TEXT("%s"), WindowCharArray.GetData());
 			
             		const char* Result = TCHAR_TO_UTF8(*WindowString);
+
+			SteamFriends()->ActivateGameOverlayToUser(Result, playerID);
 #endif
-            		SteamFriends()->ActivateGameOverlayToUser(Result, playerID);
+            		
 		}
 		else
 		{
